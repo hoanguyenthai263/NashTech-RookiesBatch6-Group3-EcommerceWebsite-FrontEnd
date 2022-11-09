@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <script src="https://kit.fontawesome.com/bb5b5aeacd.js" crossorigin="anonymous"></script>
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <!-- scroll -->
+  
+  <script src="./js/script.js"></script>
+  <!-- scroll -->
+  <!-- wow.js -->
+  <script type="text/javascript" src="./js/wow.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+  <link rel="stylesheet" href="./css/animate.css" />
+  <style>
+    .wow:first-child {
+      visibility: hidden;
+    }
+  </style>
+  <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+  <!-- scrollSpy plugin see https://github.com/thesmart/jquery-scrollspy -->
+  <script src="https://gitcdn.xyz/repo/thesmart/jquery-scrollspy/0.1.3/scrollspy.js"></script>
+  <script>
+    var $body = $("body");
+    var $box = $(".box");
+    for (var i = 0; i < 50; i++) {
+      $box.clone().appendTo($body);
+    }
+
+    // Helper function for add element box list in WOW
+    WOW.prototype.addBox = function (element) {
+      this.boxes.push(element);
+    };
+
+    // Init WOW.js and get instance
+    var wow = new WOW();
+    wow.init();
+
+    // Attach scrollSpy to .wow elements for detect view exit events,
+    // then reset elements and add again for animation
+    $(".wow")
+      .on("scrollSpy:exit", function () {
+        $(this)
+          .css({
+            visibility: "hidden",
+            "animation-name": "none",
+          })
+          .removeClass("animated");
+        wow.addBox(this);
+      })
+      .scrollSpy();
+  </script>
+  <!-- wow.js -->
+  </body>
+  
+  <!--Scroll change text-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    $(window)
+      .scroll(function () {
+        $("#new-direction-text").html(
+          $(this).scrollTop() < window.innerHeight * 4
+            ? "Taking sound in totally new direction"
+            : "Spatial audio with dynamic head tracking places sounds all around you to create a three-dimensional listening experience for music, TV shows, movies, and more - immersing you in sounds from every direction so it feels like you're in your very own concert hall or theater."
+        );
+        $("#adaptive-eq-image-text").html(
+          $(this).scrollTop() < window.innerHeight * 4.6
+            ? ""
+            : "Music on a more personal note. Adaptive EQ automatically tunes music to your ears. Inward-facing microphones detect what you're hearing, then adjust low- and mid- range frequencies to deliver the rich details in every song, customized for you in real ."
+        );
+      })
+      .scroll(); //<---triggers the scroll on load
+  </script>
+  
+  <script type="text/javascript">
+    window.addEventListener("scroll", function () {
+      var scroll = document.querySelector(".new-direction-text");
+      var scroll1 = document.querySelector(".adaptive-eq-image-text");
+      scroll.classList.toggle(
+        "active",
+        window.scrollY < window.innerHeight * 4
+      );
+      scroll1.classList.toggle(
+        "active",
+        window.scrollY < window.innerHeight * 4.6
+      );
+    });
+  </script>
+  <!--Scroll change text-->
+  
+  <!--To Top-->
+  <script type="text/javascript">
+    window.addEventListener("scroll", function () {
+      var scroll = document.querySelector(".scrollTop");
+      scroll.classList.toggle(
+        "active",
+        window.scrollY > window.innerHeight * 3
+      );
+    });
+  </script>
+  <!--To Top-->
+  
+  </html>
