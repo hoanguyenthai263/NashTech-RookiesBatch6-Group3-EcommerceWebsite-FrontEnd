@@ -2,21 +2,28 @@ import React from "react";
 import "./css/website.css";
 import img1 from "./images/airpods_left.png";
 import img2 from "./images/airpods_right.png";
-import axios from "axios";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import ProductService from "./ProductService";
 
 function Product() {
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
-    axios
-      .get(
-        "localhost:8080/api/v1/product/id?:4a9a7a5d-e4e9-47c1-ba63-71c548c89fb9", 
-      )
-      .then(function (response) {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await ProductService.getProductById(
+          "4a9a7a5d-e4e9-47c1-ba63-71c548c89fb9"
+        );
         console.log(response);
-      })
-      .catch(function (error) {
+        setProducts(response.data);
+      } catch (error) {
         console.log(error);
-      });
+      }
+      setLoading(false);
+    };
+    fetchData();
   }, []);
 
   return (
